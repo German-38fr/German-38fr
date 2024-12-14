@@ -2,7 +2,7 @@
 - 👀 I’m interested in Bouddhism,Books, Art Event, doing SaaS for websites, My Scooter Freestyle for micro mobility, Girls and Curves...
 - 🌱 I’m currently learning ... Q.I eclectic ! > 220 :)
 - 💞️ I’m looking to collaborate on ...love meeting new people
-- 📫 How to reach me ...by mail ! or phone if u are friends !
+- 📫 How to reach me ...by mail opengl3d@yahoo.com ! or phone if u are friends !
 - ⚡ Fun fact: ... Single !
 
 <!---

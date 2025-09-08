@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="fr" >
+<title>SMS dette</title>
+<head>
+<meta charset="utf-8" >
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- <link rel="shortcut icon" type = "image/png" href='./favicon_smsdette.ico'/> -->
+
+<link rel="shortcut icon" type = "image/ico"
+href='data:image/ico;base64,AAABAAEAEBAAAAEACABoBQAAFgAAACgAAAAQAAAAIAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABfX/8AYWH/AJiY/wCcnP8AoKD/AKOj/wCkpP8Apqb/AKen/wCpqf8Ara3/AK6u/wCvr/8AsLD/ALKy/wCzs/8AtLT/ALW1/wC2tv8At7f/ALi4/wC5uf8Aurr/ALu7/wDAwP8AwcH/AMPD/wDFxf8Ax8f/AMjI/wDLy/8AzMz/AM3N/wDR0f8A1NT/ANbW/wDX1/8A2Nj/ANvb/wDi4v8A5+f/AOjo/wDp6f8A6ur/AOzs/wDt7f8A7u7/AO/v/wDw8P8A8fH/APLy/wDz8/8A9PT/APj4/wD5+f8A+vr/APv7/wD8/P8A/f3/AP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzspCx83OxwVNSQWNBQoJREvHTAtCSYiOzsOOx8qMhQ7Ox0wOwUjChAhFTsfKy4CGxAdMDgDORMPNgYhHxctGgswJggUMTs7OzslOyczOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzslDRUwJzo6Jy0QDCc7Ozs7OzsYIB4aGh4oOzgJOzs7OzEHFzAbFBQbMhkHLDs7OzsTMTs7AC0tATsEOzk7Ozs7MRIWOxw7Oxw7IBAoOzs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=' />
+
+<meta name="mobile-web-app-capable" content="yes"> <!-- à jour spec -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="author" content="M. German CASTRO (France)">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" >
+
+
+<style type='text/css' media='all'>
+
+body {
+
+width:100%;
+height:100%;
+FONT-FAMILY:ubuntu,arial,verdana;
+background-color:#FFFFFF;
+cursor:default;
+
+display:block;position:absolute;
+margin-left:0px;margin-right:0%;
+padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;
+left:0px;top:0px;
+width:99%;
+height:auto;
+
+}
+
+/* Ce code fonctionne avec les dernières versions de Chrome, Edge et Safari.  */
+
+body::-webkit-scrollbar-track {background-color:orange;}
+body::-webkit-scrollbar { width:12px; }
+
+body::-webkit-scrollbar-thumb {
+
+background-color:blue;
+border-radius:20px;
+border:3px solid orange;
+
+}
+
+
+html {
+/*
+width:100%;
+height:100%;
+*/
+background-color:#FFFFFF ;
+/*overflow-y:scroll ;*/
+
+FONT-FAMILY:ubuntu,arial,verdana;
+
+-webkit-tap-highlight-color:transparent;
+-ms-tap-highlight-color:transparent;
+-o-tap-highlight-color:transparent;
+
+cursor:default;
+
+}
+
+
+.background {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;
+margin-left:0px;margin-right:0px;
+
+width:100%;min-width:280px;min-height:400px;height:auto;
+left:0px;
+
+font-family:ubuntu,arial,verdana;
+font-size:10px;line-height:12px;
+
+background-color:#FFFFFF;
+border:2px #FFFFFF solid;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+z-index:19;
+background:url("./logo.jpg") ;
+
+overflow-x:hidden;
+overflow-y:hidden;
+}
+
+
+.formtitle {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:5px 0px 5px 0px;
+margin-left:0px;margin-right:0px;
+
+width:100%;min-width:280px;height:30px;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:14px;line-height:30px;
+
+letter-spacing:1px;
+text-align:center;
+
+background-color:transparent;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+
+z-index:10
+}
+
+
+.rappel {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;
+margin-left:2%;margin-right:2%;
+
+width:96%;min-width:280px;height:auto;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:14px;line-height:20px;
+
+text-align:justify;
+
+background-color:transparent;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+z-index:10
+}
+
+
+.title {
+display:block;position:relative;
+padding:0px 0px 0px 5px;margin:5px 0px 0px 0px;
+margin-left:0px;margin-right:0px;
+
+width:98%;min-width:280px;height:auto;
+left:1%;
+font-family:ubuntu,arial,verdana;
+
+font-size:14px;line-height:24px;
+
+background-color:transparent;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+z-index:10
+}
+
+
+.containerdevise {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:0px 0px 0px 0px;
+margin-left:0px;margin-right:0px;
+
+width:94%;min-width:280px;height:auto;
+left:1%;
+font-family:ubuntu,arial,verdana;
+
+font-size:12px;line-height:14px;
+
+background-color:transparent;
+
+border:0px #D2DFE4 solid;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+cursor:default;
+
+z-index:10
+}
+
+
+.data {
+display:block;position:relative;
+padding:0px 0px 0px 5px;margin:0px 0px 0px 0px;
+margin-left:0px;margin-right:0px;
+
+width:94%;min-width:280px;height:24px;
+left:1%;
+font-family:ubuntu,arial,verdana;
+
+font-size:14px;line-height:24px;
+
+background-color:#D9D7D7;
+border:0px #D2DFE4 solid;
+
+-webkit-user-select: none;
+-khtml-user-select: none;
+
+cursor:pointer;
+
+z-index:10
+}
+
+
+.devise {
+display:inline-block;position:relative;
+padding:0px 0px 0px 5px;margin:0px 0px 0px 0px;
+margin-left:0px;margin-right:0px;
+
+width:30%;min-width:80px;height:24px;
+left:0%;
+font-family:ubuntu,arial,verdana;
+
+font-size:18px;line-height:24px;
+
+background-color:#D9D7D7;
+border:0px #D2DFE4 solid;
+
+-webkit-user-select: none;
+-khtml-user-select: none;
+
+cursor:pointer;
+
+z-index:10
+}
+
+
+.unitdata {
+display:inline-block;position:relative;
+padding:0px 0px 0px 0px;margin:0px 0px 0px 5px;
+margin-left:0px;margin-right:0px;
+
+width:auto;min-width:60px;height:24px;
+left:0%;
+
+top:-2px;
+
+font-family:ubuntu,arial,verdana;
+
+font-size:14px;line-height:24px;
+letter-spacing:1px;
+font-weight:bold;
+font-style:italic;
+
+background-color:transparent;
+border:0px red solid;
+
+-webkit-user-select: none;
+-khtml-user-select: none;
+
+cursor:pointer;
+
+z-index:10
+}
+
+
+
+.bt:hover {
+background-color:#D9D7D7;
+}
+
+
+.bt {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:40px 0px 10px 0px;
+margin-left:2%;margin-right:0%;
+
+width:95%;min-width:260px;height:40px;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:14px;line-height:40px;
+
+vertical-align:top;
+letter-spacing:1px;
+text-align:center;
+text-decoration:none;
+color:#000000;
+
+background-color:#FFFFFF;
+
+border:1px #000000 solid;
+
+-webkit-user-select: none;
+-khtml-user-select: none;
+
+z-index:10
+}
+
+
+
+.footertitle {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:25px 0px 15px 0px;
+margin-left:0px;margin-right:0px;
+
+width:100%;min-width:280px;height:auto;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:10px;line-height:12px;
+
+letter-spacing:1px;
+text-align:center;
+
+background-color:transparent;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+z-index:10
+}
+
+
+.mail {
+display:block;position:relative;
+padding:0px 0px 60px 0px;margin:0px 0px 0px 0px;
+margin-left:0%;margin-right:0%;
+
+width:100%;min-width:200px;height:auto;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:10px;line-height:12px;
+
+vertical-align:top;
+letter-spacing:1px;
+text-align:center;
+text-decoration:none;
+color:#000000;
+background-color:transparent;
+border:0px #000000 solid;
+/*
+-webkit-user-select: none;
+-khtml-user-select: none;
+*/
+z-index:10
+}
+
+
+
+.local {
+display:inline-block;position:relative;
+padding:5px 5px 5px 5px;margin:10px 10px 10px 10px;
+margin-left:5px;margin-right:5px;
+
+width:auto;min-width:66px;height:auto;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:16px;line-height:24px;
+
+text-align:center;
+text-decoration:none;
+color:#000000;
+background-color:#D9D7D7;
+border:1px #000000 solid;
+border-radius:0px;
+
+-webkit-user-select: none;
+-khtml-user-select: none;
+
+z-index:10
+}
+
+.local:hover {
+color:#000000;
+background-color:#90EE90;
+
+}
+
+
+.navlocal {
+display:block;position:relative;
+padding:0px 0px 0px 0px;margin:5px 0px 15px 0px;
+margin-left:0px;margin-right:0px;
+
+width:100%;min-width:280px;height:auto;
+left:0px;
+
+text-align:center;
+
+background-color:transparent;
+
+z-index:10
+}
+
+
+.bee {
+display:block;position:relative;
+padding:5px 5px 5px 5px;margin:40px 0px 40px 0px;
+margin-left:2%;margin-right:2%;
+
+width:auto;min-width:200px;height:auto;
+left:0px;
+font-family:ubuntu,arial,verdana;
+
+font-size:12px;line-height:18px;
+
+text-align:center;
+text-decoration:none;
+color:#000000;
+background-color:#FFDD01;
+border:4px #000000 solid;
+border-radius:8px;
+
+-webkit-user-select: none;
+-khtml-user-select: none;
+cursor:pointer;
+z-index:10
+}
+
+
+</style>
+
+
+</head>
+
+<body >
+
+
+<div id='navigationlocalid' class='navlocal'>
+<div id='frlocalid' class='local'>FR</div>
+<div id='enlocalid' class='local'>EN</div>
+<div id='eslocalid' class='local'>ES</div>
+</div>
+
+<div id='memoid' class='rappel' ></div>
+
+<div id='backgroundid' class='background' >
+
+<div id='titlepocketmoneyid' class='formtitle'>Composer une reconnaissance de dette</div>
+
+<form name='dettes' method='POST' enctype='application/x-www-form-urlencoded'  style='display:block;position:relative;' >
+<div id='nametitleid' class='title' >Émetteur de la dette, Nom Prénom</div>
+<input id='nameid' class='data' type='text' placeholder='Votre nom prénom' />
+<div id='contacttitleid' class='title' >Bénéficiaire de la dette:</div>
+<div id='contactid' class='data' style='font-size:14px;' >voir dans contacts</div>
+
+<div id='montanttitleid' class='title'  >Montant de la dette:</div>
+<div class='containerdevise' >
+<input id='montantid' class='devise' value='' style= 'left:0px;width:50%;min-width:140px' type='text' placeholder='ex: 4,90' />
+<div id='devisedetteid' class='unitdata' >Euros</div> " clic "
+</div>
+
+<div id='objettitleid' class='title'>Objet de la dette:</div>
+<input id='objetid' class='data' value='' type='text' placeholder='ex: 1 bière'/>
+
+<div class='containerdevise' >
+<div id='delaistitleid' class='title'>Délais expiration de la dette:</div>
+<input id='dateid' class='devise' value='' type='text' placeholder='ex:1'/>
+<div id='expiredetteid' class='unitdata' >jours.</div>
+</div>
+
+</form>
+
+<a id='btapplyid' class='bt'>SMS/contacts</a>
+
+
+<div id='lawid' class='footertitle'>SMS dette ver. 1.23<br>
+Tous droits réservés 2025.<br>
+(compatible Android/Chrome)
+</div>
+
+<a class='mail' href='mailto:opengl3d@yahoo.com'>
+Owner/Dueño/Auteur: M. German CASTRO (France)<br>
+opengl3d@yahoo.com
+</a>
+
+<div id='beeid' class='bee' >Pensez à soutenir le gentil Web<b>Master</b> !<br>
+Go to <b>Western Union ?</b></div>
+
+</div> <!-- fin flux -->
+
+<script language='Javascript' type='text/javascript'>
+
+var background = document.getElementById('backgroundid') ;
+
+var frlocal = document.getElementById('frlocalid') ;
+var enlocal = document.getElementById('enlocalid') ;
+var eslocal = document.getElementById('eslocalid') ;
+
+var nomprenom = document.getElementById('nameid') ;
+var contact = document.getElementById('contactid') ;
+var montant = document.getElementById('montantid') ;
+var devisedette = document.getElementById('devisedetteid') ;
+var objet = document.getElementById('objetid') ;
+var date = document.getElementById('dateid') ;
+
+var titlepocketmoney = document.getElementById('titlepocketmoneyid') ;
+var nametitle = document.getElementById('nametitleid') ;
+var contacttitle = document.getElementById('contacttitleid') ;
+var montanttitle = document.getElementById('montanttitleid') ;
+var objettitle = document.getElementById('objettitleid') ;
+var delaistitleid = document.getElementById('delaistitleid') ;
+var expiredette = document.getElementById('expiredetteid') ;
+
+var bee = document.getElementById('beeid') ;
+
+var law = document.getElementById('lawid') ;
+
+var btapply = document.getElementById('btapplyid') ;
+
+bee.onclick = function() {
+document.location.href = 'https://www.westernunion.com' ;
+}
+
+var startd = new Date();
+var annee = startd.getFullYear() ;
+
+law.innerHTML = 'SMS dette ver. 1.23<br>Tous droits réservés '+annee+'.<br>(compatible Android/Chrome)' ;
+
+var dv = 0 ; 
+var  devisePlus = [] ;
+devisePlus[0] = 'Euros' ;
+devisePlus[1] = 'Dollars' ;
+devisePlus[2] = 'Dollars Local' ;
+devisePlus[3] = 'Sterling' ;
+devisePlus[4] = 'Franc Local' ;
+devisePlus[5] = 'Yen' ;
+devisePlus[6] = 'Rouble' ;
+devisePlus[7] = 'Roupi' ;
+devisePlus[8] = 'Livre Local' ;
+devisePlus[9] = 'Pesos' ;
+devisePlus[10] = 'Shilling' ;
+devisePlus[11] = 'Won' ;
+
+devisedette.innerText = 'Euros' ;
+expiredette.innerText = 'Jours' ;
+
+devisedette.onclick = function() { dv++ ;
+
+if(dv > 11){ dv = 0 ; }
+
+console.log('Devise de la dette...'+devisePlus[dv]) ;
+
+devisedette.innerText = devisePlus[dv] ;
+
+}
+
+
+var memo = document.getElementById('memoid') ;
+
+var  memotexte = [] ;
+
+memotexte[0] = 'Composer une reconnaissance de dette' ;
+memotexte[0] += '<br><br>' ;
+memotexte[0] += '<b>Rappel :</b><br><br>' ;
+memotexte[0] += 'SMS dette est un outil de gestion des ardoises pour les ' ;
+memotexte[0] += 'commerçants.<br>' ;
+memotexte[0] += '' ;
+memotexte[0] += 'Le commerçant recevra sur son téléphone mobile les ' ;
+memotexte[0] += 'reconnaissances de dettes électroniques dans son ' ;
+memotexte[0] += 'application SMS.<br>' ;
+memotexte[0] += '' ;
+memotexte[0] += 'Le client émetteur utilise sa réelle identité et non ' ;
+memotexte[0] += 'un pseudonyme, ainsi que son numéro de téléphone ' ;
+memotexte[0] += 'mobile personnel. Ce numéro fait foi. Le client utilisateur ' ;
+memotexte[0] += 'de l\'application, s\'engage à en informer son commerçant ' ;
+memotexte[0] += 'si ce numéro venait à changer de propriétaire.<br>' ;
+memotexte[0] += '' ;
+memotexte[0] += 'L\'émetteur de la dette s\'engage à rembourser le ' ;
+memotexte[0] += 'commerçant dans les délais convenus avec le commerçant, ' ;
+memotexte[0] += 'afin d\'entretenir avec lui un rapport amical et de bon aloi.<br>' ;
+memotexte[0] += '' ;
+memotexte[0] += 'Dès réception de la reconnaissance de dette par le ' ;
+memotexte[0] += 'commerçant, celle-ci ne peut pas être modifiée, elle ' ;
+memotexte[0] += 'sera effacée par le commerçant dès que la dette aura été ' ;
+memotexte[0] += 'honorée.<br>' ;
+memotexte[0] += '' ;
+memotexte[0] += 'Le commerçant est la partie qui décide si elle accepte une ' ;
+memotexte[0] += 'reconnaissance de dette électronique via cette application, ' ;
+memotexte[0] += 'ou bien s\'il faut envisager un recours auprès des autorités ' ;
+memotexte[0] += 'légales.<br>' ;
+memotexte[0] += '' ;
+
+//Compose an acknowledgment of debt
+
+memotexte[1] = 'Compose an acknowledgment of debt' ;
+memotexte[1] += '<br><br>' ;
+memotexte[1] += '<b>Reminder: </b><br><br>' ;
+memotexte[1] += '' ;
+memotexte[1] += 'SMS Debt is a bill management tool for merchants.<br>' ;
+memotexte[1] += '' ;
+memotexte[1] += 'The merchant will receive electronic Iacknowledgment of debts on their mobile phone in their SMS application.<br>' ;
+memotexte[1] += '' ;
+memotexte[1] += 'The issuing customer uses their real identity, not a pseudonym, as well as their personal mobile phone number. This number is authoritative. The customer using the application agrees to inform their merchant if this number changes hands.<br>' ;
+memotexte[1] += '' ;
+memotexte[1] += 'The debt issuer agrees to reimburse the merchant within the timeframe agreed upon with the merchant, in order to maintain a friendly and trustworthy relationship with them.<br>' ;
+memotexte[1] += '' ;
+memotexte[1] += 'Once the merchant receives the acknowledgment of debt, it cannot be modified; it will be deleted by the merchant as soon as the debt has been paid.<br>' ;
+memotexte[1] += '' ;
+memotexte[1] += 'The merchant is the party who decides whether to accept an electronic acknowledgment of debt via this application or whether to consider recourse to the legal authorities.<br>' ;
+memotexte[1] += '' ;
+
+
+//Redactar un reconocimiento de deuda
+
+memotexte[2] = 'Componer un reconocimiento de deuda' ;
+memotexte[2] += '<br><br>' ;
+memotexte[2] += '' ;
+memotexte[2] += '<b>Recordatorio: </b><br><br>' ;
+memotexte[2] += '' ;
+memotexte[2] += 'SMS Debt es una herramienta de gestión de facturas para comerciantes.<br>' ;
+memotexte[2] += '' ;
+memotexte[2] += 'El comerciante recibirá pagarés electrónicos en su teléfono móvil a través de su aplicación de SMS.<br>' ;
+memotexte[2] += '' ;
+memotexte[2] += 'El cliente emisor utiliza su identidad real, no un seudónimo, así como su número de teléfono móvil personal. Este número es fidedigno. El cliente que utiliza la aplicación se compromete a informar a su comerciante si este número cambia de manos.<br>' ;
+memotexte[2] += '' ;
+memotexte[2] += 'El emisor de la deuda se compromete a reembolsar al comerciante dentro del plazo acordado con él, para mantener una relación cordial y de confianza.<br>' ;
+memotexte[2] += '' ;
+memotexte[2] += 'Una vez que el comerciante recibe el pagaré, este no puede modificarse lo eliminará en cuanto se haya pagado la deuda.<br>' ;
+memotexte[2] += '' ;
+memotexte[2] += 'El comerciante es quien decide si acepta un pagaré electrónico a través de esta aplicación o si considera recurrir a las autoridades legales.<br>' ;
+memotexte[2] += '' ;
+
+memo.innerHTML = memotexte[0] ;
+
+background.style.display = 'none' ;
+memo.style.display = 'block' ;
+
+function pagechange() {
+
+setTimeout(function() {
+background.style.display = 'block' ;
+memo.style.display = 'none' ;
+},6000) ;
+
+}
+
+pagechange();
+
+
+
+var idglobaldette = 0 ; 
+
+frlocal.onclick = function() {
+
+idglobaldette = 0 ; 
+
+memo.innerHTML = memotexte[0] ;
+titlepocketmoney.innerHTML = 'Composer une reconnaissance de dette' 
+nametitle.innerHTML = 'Émetteur de la dette, Nom Prénom:' ;
+contacttitle.innerHTML = 'Bénéficiaire de la dette:' ;
+montanttitle.innerHTML = 'Montant de la dette:' ;
+objettitle.innerHTML = 'Objet de la dette:' ;
+delaistitleid.innerHTML = 'Délais accordé pour remboursé:' ;
+expiredette.innerHTML = 'Jours' ;
+
+bee.innerHTML = 'Pensez à soutenir le gentil Web<b>Master</b> !<br>Go to <b>Western Union ?</b>';
+
+}
+
+enlocal.onclick = function() {
+
+idglobaldette = 1 ; 
+
+memo.innerHTML = memotexte[1] ;
+titlepocketmoney.innerHTML = 'Compose an acknowledgment of debt' ;
+nametitle.innerHTML = 'Debt Issuer, Last Name, First Name:' ;
+contacttitle.innerHTML = 'Debt Beneficiary:' ;
+montanttitle.innerHTML = 'Debt Amount:' ;
+objettitle.innerHTML = 'Purpose of Debt:' ;
+delaistitleid.innerHTML = 'Duration granted for reimbursement' ; //'Deadlines granted for reimbursement:' ;
+expiredette.innerHTML = 'Days' ;
+
+bee.innerHTML = 'Please consider supporting the kind web<b>Master</b> !<br>Go to <b>Western Union ?</b>';
+
+
+}
+
+eslocal.onclick = function() {
+
+idglobaldette = 2 ; 
+
+memo.innerHTML = memotexte[2] ;
+titlepocketmoney.innerHTML = 'Redactar un reconocimiento de deuda' ;
+nametitle.innerHTML = 'Emisor de la deuda, Apellido, Nombre:' ;
+contacttitle.innerHTML = 'Beneficiario de la deuda:' ;
+montanttitle.innerHTML = 'Monto de la deuda:' ;
+objettitle.innerHTML = 'Propósito de la deuda:' ;
+delaistitleid.innerHTML = 'Duración concedidos para el reembolso:' ;
+expiredette.innerHTML = 'Días' ;
+
+bee.innerHTML = 'Por favor considere apoyar al amable web<b>Master</b> !<br>Go to <b>Western Union ?</b>';
+
+}
+
+function SendSMSMMS() {
+
+var messagebody = [] ;
+
+messagebody[0] = '\r\n'  ;
+messagebody[0] += '* INFO bon électronique *\r\n' ;
+messagebody[0] += '\r\n\r\n------ début du document ------\r\n'
+messagebody[0] += '' ;
+messagebody[0] += '\r\nÉmission d\'une dette.\r\n' ;
+messagebody[0] += '\r\n\r\n' ;
+messagebody[0] += 'Expéditeur: ' ;
+messagebody[0] += ''+nomprenom.value+'\r\n' ;
+messagebody[0] += 'Valeur veinale de la dette :' ;
+messagebody[0] += '\r\n\r\n'+((Number(montant.value)*1).toFixed(2))+' '+devisedette.innerText+'\r\n\r\n' ;
+messagebody[0] += 'Objet de la reconnaissance de dette :\r\n' ;
+messagebody[0] += '\r\n'+objet.value+'\r\n' ;
+messagebody[0] += '\r\nDélais accordé à l\'expéditeur\r\n' ;
+messagebody[0] += 'pour rembourser cette dette :\r\n' ;
+messagebody[0] += ''+date.value+' ' +expiredette.innerText+'\r\n' ;
+messagebody[0] += '\r\n' ;
+messagebody[0] += '\r\n------ fin du document ------\r\n\r\n' ;
+
+
+messagebody[1] = '\r\n'  ;
+messagebody[1] += '* Electronic order information *\r\n' ;
+messagebody[1] += '\r\n\r\n------ Start of document ------\r\n'
+messagebody[1] += '' ;
+messagebody[1] += '\r\nIssuance of a debt.\r\n' ;
+messagebody[1] += '\r\n\r\n' ;
+messagebody[1] += 'Sender: ' ;
+messagebody[1] += ''+nomprenom.value+'\r\n' ;
+messagebody[1] += 'Venue value of the debt :' ;
+messagebody[1] += '\r\n\r\n'+((Number(montant.value)*1).toFixed(2))+' '+devisedette.innerText+'\r\n\r\n' ;
+messagebody[1] += 'Purpose of the debt acknowledgment: \r\n' ;
+messagebody[1] += '\r\n'+objet.value+'\r\n' ;
+messagebody[1] += '\r\nTime allowed to the sender\r\n' ;
+messagebody[1] += 'to repay this debt: \r\n' ;
+messagebody[1] += ''+date.value+' ' +expiredette.innerText+'\r\n' ;
+messagebody[1] += '\r\n' ;
+messagebody[1] += '\r\n------ End of document ------\r\n\r\n' ;
+
+
+messagebody[2] = '\r\n'  ;
+messagebody[2] += '* Información orden electrónico *\r\n' ;
+messagebody[2] += '\r\n\r\n------ Inicio del documento ------\r\n'
+messagebody[2] += '' ;
+messagebody[2] += '\r\nEmisión de una deuda.\r\n' ;
+messagebody[2] += '\r\n\r\n' ;
+messagebody[2] += 'Remitente: ' ;
+messagebody[2] += ''+nomprenom.value+'\r\n' ;
+messagebody[2] += 'Valor de la deuda en el lugar de emisión: ' ;
+messagebody[2] += '\r\n\r\n'+((Number(montant.value)*1).toFixed(2))+' '+devisedette.innerText+'\r\n\r\n' ;
+messagebody[2] += 'Objetivo del reconocimiento de la deuda: \r\n' ;
+messagebody[2] += '\r\n'+objet.value+'\r\n' ;
+messagebody[2] += '\r\nDuración concedido al remitente\r\n' ;
+messagebody[2] += 'para liquidar esta deuda: \r\n' ;
+messagebody[2] += ''+date.value+' ' +expiredette.innerText+'\r\n' ;
+messagebody[2] += '\r\n' ;
+messagebody[2] += '\r\n------ Fin del documento ------\r\n\r\n' ;
+
+console.clear() ;
+console.log(messagebody[idglobaldette]) ; //DEBUG
+
+nomprenom.focus() ;
+nomprenom.blur() ;
+
+montant.focus() ;
+montant.blur() ;
+
+objet.focus() ;
+objet.blur() ;
+
+date.focus() ;
+date.blur() ;
+
+btapply.setAttribute('href', 'sms:?body='+encodeURIComponent(messagebody[idglobaldette]) ) ;
+
+}
+
+
+
+btapply.onclick = function() {
+
+console.log('go to sms...'); 
+
+SendSMSMMS();
+
+}
+
+</script>
+
+</body>
+</html>
